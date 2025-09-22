@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../auth/AuthContext";
-import useQuery from "../api/useQuery";
-import useMutation from "../api/useMutation";
+import { deleteActivity, getActivity } from "../api/activities";
+import { useEffect, useState } from "react";
 
 export default function ActivityDetails() {
   const { token } = useAuth();
@@ -34,7 +34,8 @@ export default function ActivityDetails() {
       <h1>{activity.name}</h1>
       <p>by {activity.creatorName}</p>
       <p>{activity.description}</p>
-      {token && <DeleteButton id={activity.id} />}
+      {token && <button onClick={tryDelete}>Delete</button>}
+      {error && <p role="alert">{error}</p>}
     </article>
   );
 }

@@ -1,23 +1,30 @@
-import useMutation from "../api/useMutation";
+import { useState } from "react";
+import { createActivity } from "../api/activities";
+import { useAuth } from "../auth/AuthContext";
 
-/** Users can create new activities with a name and description. */
-export default function ActivityForm() {
-  const {
-    mutate: add,
-    loading,
-    error,
-  } = useMutation("POST", "/activities", ["activities"]);
+export default function ActivityForm({ syncActivites }) {
+  const { token } = useAuth();
 
-  const addActivity = (formData) => {
+  const [error, setError] = useState(null);
+
+  const tryCreateActivity = async (formData) => {
+    setError(null);
+
     const name = formData.get("name");
     const description = formData.get("description");
-    add({ name, description });
+
+    try {
+      await createActivity(token, { name, description });
+      syncActivities();
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
     <>
       <h2>Add a new activity</h2>
-      <form action={addActivity}>
+      <form action={tryCreateActivity}>
         <label>
           Name
           <input type="text" name="name" />
@@ -26,9 +33,9 @@ export default function ActivityForm() {
           Description
           <input type="text" name="description" />
         </label>
-        <button>{loading ? "Adding..." : "Add activity"}</button>
-        {error && <output>{error}</output>}
+        <button>Add activity</button>
       </form>
+      {error && <p role="alert">{error}</p>}
     </>
   );
 }
