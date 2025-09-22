@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getRoutines } from "../api/routines";
 import { useAuth } from "../auth/AuthContext.jsx";
 
-import Routineform from "./RoutineForm";
+import RoutineForm from "./RoutineForm";
 import RoutineList from "./RoutineList";
 
 export default function RoutinesPage() {

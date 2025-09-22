@@ -27,3 +27,19 @@ export default function RoutineDetails() {
       setError(e.message);
     }
   };
+
+  if (!routine) return <p>Error</p>;
+
+  return (
+    <>
+      <h1>{routine.name}</h1>
+      <p>by {routine.creatorName}</p>
+      <p>{routine.goal}</p>
+      {token && <button onClick={tryDelete}>Delete</button>}
+      {error && <p role="alert">{error}</p>}
+
+      <SetList sets={routine.sets} syncRoutine={syncRoutine} />
+      {token && <SetForm routineId={id} syncRoutine={syncRoutine} />}
+    </>
+  );
+}
