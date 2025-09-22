@@ -1,6 +1,10 @@
 import { Routes, Route } from "react-router";
 
 import Register from "./auth/Register";
+import Layout from "./layout/Layout.jsx";
+import ActivityDetails from "./activities/ActivityDetails";
+import RoutinesPage from "./routines/RoutinesPage";
+import RoutineDetails from "./routines/RoutineDetails";
 import Login from "./auth/Login";
 import ActivitiesPage from "./activities/ActivitiesPage";
 import Error404 from "./Error404.jsx";
