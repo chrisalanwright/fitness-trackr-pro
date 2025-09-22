@@ -2,7 +2,7 @@ const API = import.meta.env.VITE_API;
 
 export async function getActivities() {
   try {
-    const response = await fetch((API = "/activities"));
+    const response = await fetch(API + "/activities");
     const result = await response.json();
     return result;
   } catch (error) {
@@ -24,14 +24,14 @@ export async function getActivity(id) {
 
 export async function createActivity(token, activity) {
   if (!token) {
-    throw Error("Must sign in to create activity.");
+    throw Error("You must be signed in to create an activity.");
   }
 
-  const response = await fetch(API + "/activities/", {
+  const response = await fetch(API + "/activities", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer" + token,
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(activity),
   });
@@ -44,14 +44,12 @@ export async function createActivity(token, activity) {
 
 export async function deleteActivity(token, id) {
   if (!token) {
-    throw Error("Must sign in to delete activity.");
+    throw Error("You must be signed in to delete an activity.");
   }
 
-  const response = await fetch((API = "/activities/" + id), {
+  const response = await fetch(API + "/activities/" + id, {
     method: "DELETE",
-    headers: {
-      Authorization: "Bearer" + token,
-    },
+    headers: { Authorization: "Bearer " + token },
   });
 
   if (!response.ok) {
