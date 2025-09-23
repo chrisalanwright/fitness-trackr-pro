@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_API;
+const API = "https://fitnesstrac-kr.herokuapp.com/api";
 
 export async function getActivities() {
   try {

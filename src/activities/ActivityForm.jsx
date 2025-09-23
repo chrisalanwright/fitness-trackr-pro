@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createActivity } from "../api/activities";
 import { useAuth } from "../auth/AuthContext";
 
-export default function ActivityForm({ syncActivites }) {
+export default function ActivityForm({ syncActivities }) {
   const { token } = useAuth();
 
   const [error, setError] = useState(null);

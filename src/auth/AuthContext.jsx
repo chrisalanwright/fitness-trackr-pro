@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 
-const API = import.meta.env.VITE_API;
+const API = "https://fitnesstrac-kr.herokuapp.com/api";
 
 const AuthContext = createContext();
 
@@ -8,14 +8,11 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState();
 
   const register = async (credentials) => {
-    const response = await fetch(
-      "https://fitnesstrac-kr.herokuapp.com/api/users/register",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(credentials),
-      }
-    );
+    const response = await fetch(API + "/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    });
     const result = await response.json();
     if (!response.ok) {
       throw Error(result.message);
@@ -24,14 +21,11 @@ export function AuthProvider({ children }) {
   };
 
   const login = async (credentials) => {
-    const response = await fetch(
-      "https://fitnesstrac-kr.herokuapp.com/api/users/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(credentials),
-      }
-    );
+    const response = await fetch(API + "/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    });
     const result = await response.json();
     if (!response.ok) {
       throw Error(result.message);
