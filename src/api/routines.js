@@ -13,7 +13,7 @@ export async function getRoutines() {
 
 export async function getRoutine(id) {
   try {
-    const response = await fetch((API = "/routines/" + id));
+    const response = await fetch(API + "/routines/" + id);
     const result = await response.json();
     return result;
   } catch (error) {
@@ -27,7 +27,7 @@ export async function createRoutine(token, routine) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer" + token,
+      Authorization: "Bearer " + token,
     },
     body: JSON.stringify(routine),
   });

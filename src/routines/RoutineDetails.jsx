@@ -2,6 +2,8 @@ import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../auth/AuthContext";
 import { deleteRoutine, getRoutine } from "../api/routines";
 import { useEffect, useState } from "react";
+import SetList from "./sets/SetList";
+import SetForm from "./sets/SetForm";
 
 export default function RoutineDetails() {
   const { token } = useAuth();

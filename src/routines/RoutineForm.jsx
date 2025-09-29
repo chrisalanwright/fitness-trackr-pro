@@ -23,7 +23,12 @@ export default function RoutineForm({ syncRoutines }) {
   return (
     <>
       <h2>Add a new routine</h2>
-      <form action={tryCreateRoutine}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          tryCreateRoutine(new FormData(e.target));
+        }}
+      >
         <label>
           Name
           <input type="text" name="name" />

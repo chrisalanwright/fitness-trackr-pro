@@ -31,11 +31,17 @@ export default function ActivityDetails() {
 
   return (
     <article>
-      <h1>{activity.name}</h1>
-      <p>by {activity.creatorName}</p>
-      <p>{activity.description}</p>
-      {token && <button onClick={tryDelete}>Delete</button>}
-      {error && <p role="alert">{error}</p>}
+      {!activity ? (
+        <p>Loading...</p>
+      ) : (
+        <>
+          <h1>{activity.name}</h1>
+          <p>by {activity.creatorName}</p>
+          <p>{activity.description}</p>
+          {token && <button onClick={tryDelete}>Delete</button>}
+          {error && <p role="alert">{error}</p>}
+        </>
+      )}
     </article>
   );
 }
